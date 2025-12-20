@@ -1,0 +1,32 @@
+{
+    "name": "JalalLinuX/general-module",
+    "description": "",
+    "type": "laravel-module",
+    "authors": [
+        {
+            "name": "HiDevs Studioi",
+            "email": "hidevs.studio@gmail.com"
+        }
+    ],
+    "extra": {
+        "module-dir": "General",
+        "laravel": {
+            "providers": [],
+            "aliases": {
+
+            }
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Modules\\General\\": "app/",
+            "Modules\\General\\Database\\Factories\\": "database/factories/",
+            "Modules\\General\\Database\\Seeders\\": "database/seeders/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Modules\\General\\Tests\\": "tests/"
+        }
+    }
+}
