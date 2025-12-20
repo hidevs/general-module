@@ -8,6 +8,9 @@
             "email": "hidevs.studio@gmail.com"
         }
     ],
+    "require": {
+        "prettus/l5-repository": "^3.0"
+    },
     "extra": {
         "module-dir": "General",
         "laravel": {
