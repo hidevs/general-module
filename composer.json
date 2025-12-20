@@ -9,8 +9,7 @@
         }
     ],
     "require": {
-        "prettus/l5-repository": "^3.0",
-        "laravel/pulse": "^1.4"
+        "prettus/l5-repository": "^3.0"
     },
     "extra": {
         "module-dir": "General",
