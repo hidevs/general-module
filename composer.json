@@ -22,7 +22,10 @@
             "Modules\\General\\": "app/",
             "Modules\\General\\Database\\Factories\\": "database/factories/",
             "Modules\\General\\Database\\Seeders\\": "database/seeders/"
-        }
+        },
+        "files": [
+            "./helpers.php"
+        ]
     },
     "autoload-dev": {
         "psr-4": {
