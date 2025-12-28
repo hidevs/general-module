@@ -2,7 +2,7 @@
 
 namespace Modules\General\Enums;
 
-use Modules\General\Contracts\EnumMethods;
+use Modules\General\Contracts\Enum\EnumMethods;
 
 enum EnumRegion: int
 {
