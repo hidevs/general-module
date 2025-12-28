@@ -13,7 +13,8 @@
         "spatie/laravel-data": "^4.18",
         "propaganistas/laravel-phone": "^6.0",
         "jenssegers/agent": "^2.6",
-        "rawilk/laravel-settings": "^3.4"
+        "rawilk/laravel-settings": "^3.4",
+        "lanin/laravel-api-debugger": "^4.0"
     },
     "extra": {
         "module-dir": "General",
