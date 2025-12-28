@@ -10,7 +10,8 @@
     ],
     "require": {
         "prettus/l5-repository": "^3.0",
-        "spatie/laravel-data": "^4.18"
+        "spatie/laravel-data": "^4.18",
+        "propaganistas/laravel-phone": "^6.0"
     },
     "extra": {
         "module-dir": "General",

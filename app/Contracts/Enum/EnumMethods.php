@@ -2,8 +2,6 @@
 
 namespace Modules\General\Contracts\Enum;
 
-use Illuminate\Support\Arr;
-use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
 
 trait EnumMethods
@@ -20,7 +18,7 @@ trait EnumMethods
 
     public static function fromName(string $name): static
     {
-        return constant(static::class . '::' . strtoupper($name));
+        return constant(static::class.'::'.strtoupper($name));
     }
 
     public static function throwFrom(int|string|null $value, string $key): static
