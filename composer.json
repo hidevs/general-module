@@ -9,7 +9,8 @@
         }
     ],
     "require": {
-        "prettus/l5-repository": "^3.0"
+        "prettus/l5-repository": "^3.0",
+        "spatie/laravel-data": "^4.18"
     },
     "extra": {
         "module-dir": "General",
