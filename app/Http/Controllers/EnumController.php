@@ -4,7 +4,7 @@ namespace Modules\General\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
-use Modules\General\Contracts\BaseController;
+use Modules\General\Contracts\Controller\BaseController;
 use Modules\General\Http\Requests\Enum\EnumShowRequest;
 use Modules\General\Services\Enum\EnumService;
 

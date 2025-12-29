@@ -2,7 +2,7 @@
 
 namespace Modules\General\Http\Controllers;
 
-use Modules\General\Contracts\BaseController;
+use Modules\General\Contracts\Controller\BaseController;
 use Modules\General\Http\Requests\Setting\SettingIndexRequest;
 use Modules\General\Http\Requests\Setting\SettingShowRequest;
 use Modules\General\Http\Resources\SettingResource;
