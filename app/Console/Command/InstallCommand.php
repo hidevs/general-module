@@ -24,9 +24,7 @@ class InstallCommand extends Command
 
         $this->generateNotifierDocs();
 
-        if (app()->isProduction()) {
-            $this->installRequirements();
-        }
+        $this->installRequirements();
 
         if ($this->option('fresh')) {
             $this->runFreshMigrations();
