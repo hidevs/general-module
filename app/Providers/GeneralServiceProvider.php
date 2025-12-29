@@ -3,7 +3,9 @@
 namespace Modules\General\Providers;
 
 use Illuminate\Support\Facades\Blade;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
+use Laravel\Horizon\Horizon;
 use Modules\General\Console\Command\InstallCommand;
 use Nwidart\Modules\Traits\PathNamespace;
 use RecursiveDirectoryIterator;
@@ -28,6 +30,8 @@ class GeneralServiceProvider extends ServiceProvider
         $this->registerConfig();
         $this->registerViews();
         $this->loadMigrationsFrom(module_path($this->name, 'database/migrations'));
+
+        $this->registerHorizonGate();
     }
 
     /**
@@ -39,14 +43,25 @@ class GeneralServiceProvider extends ServiceProvider
         $this->app->register(RouteServiceProvider::class);
     }
 
+    public function registerHorizonGate()
+    {
+        Gate::check('viewHorizon', function ($user) {
+            return $user->can('viewHorizon');
+        });
+
+        Horizon::auth(function ($request) {
+            return Gate::check('viewHorizon', [$request->user()]) || config('app.debug', false);
+        });
+    }
+
     /**
      * Register commands in the format of Command::class
      */
     protected function registerCommands(): void
     {
-         $this->commands([
-             InstallCommand::class,
-         ]);
+        $this->commands([
+            InstallCommand::class,
+        ]);
     }
 
     /**
@@ -132,7 +147,7 @@ class GeneralServiceProvider extends ServiceProvider
 
         $this->loadViewsFrom(array_merge($this->getPublishableViewPaths(), [$sourcePath]), $this->nameLower);
 
-        Blade::componentNamespace(config('modules.namespace').'\\' . $this->name . '\\View\\Components', $this->nameLower);
+        Blade::componentNamespace(config('modules.namespace').'\\'.$this->name.'\\View\\Components', $this->nameLower);
     }
 
     /**

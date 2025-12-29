@@ -5,8 +5,9 @@ if (! function_exists('frontend_url')) {
     {
         throw_if(
             empty($frontendUrl = config('app.frontend_url')),
-            new \Exception("Frontend URL is not defined in app config")
+            new \Exception('Frontend URL is not defined in app config')
         );
+
         return Uri::to($frontendUrl);
     }
 }
