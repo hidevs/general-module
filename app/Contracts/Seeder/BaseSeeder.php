@@ -14,6 +14,8 @@ abstract class BaseSeeder extends Seeder
 
         if (isset(static::$fake_seeding) && static::$fake_seeding) {
             $this->fake();
+        } else {
+            $this->askForFakeData();
         }
     }
 
