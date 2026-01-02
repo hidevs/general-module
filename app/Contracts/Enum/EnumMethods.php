@@ -29,6 +29,11 @@ trait EnumMethods
         return $enum;
     }
 
+    public function label(): string
+    {
+        return __('enums.'.self::class.'.'.$this->name);
+    }
+
     public static function count(): int
     {
         return count(static::cases());
