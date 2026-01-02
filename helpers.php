@@ -1,5 +1,8 @@
 <?php
 
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Uri;
+
 if (! function_exists('frontend_url')) {
     function frontend_url(): Uri
     {
