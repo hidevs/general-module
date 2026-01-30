@@ -1,0 +1,47 @@
+{
+    "name": "hidevs/general-module",
+    "description": "",
+    "type": "laravel-module",
+    "authors": [
+        {
+            "name": "HiDevs Studioi",
+            "email": "hidevs.studio@gmail.com"
+        },
+        {
+            "name": "JalalLinuX",
+            "email": "smjjalalzadeh93@gmail.com"
+        }
+    ],
+    "require": {
+        "prettus/l5-repository": "^3.0",
+        "spatie/laravel-data": "^4.18",
+        "propaganistas/laravel-phone": "^6.0",
+        "jenssegers/agent": "^2.6",
+        "rawilk/laravel-settings": "^3.4",
+        "lanin/laravel-api-debugger": "^4.0"
+    },
+    "extra": {
+        "module-dir": "General",
+        "laravel": {
+            "providers": [],
+            "aliases": {
+
+            }
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Modules\\General\\": "app/",
+            "Modules\\General\\Database\\Factories\\": "database/factories/",
+            "Modules\\General\\Database\\Seeders\\": "database/seeders/"
+        },
+        "files": [
+            "./helpers.php"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Modules\\General\\Tests\\": "tests/"
+        }
+    }
+}
