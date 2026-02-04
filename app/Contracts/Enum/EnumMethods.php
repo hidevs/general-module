@@ -34,6 +34,11 @@ trait EnumMethods
         return __('enums.'.self::class.'.'.$this->name);
     }
 
+    public static function options(): array
+    {
+        return array_combine(static::values(), array_map(fn (self $case) => $case->label(), static::cases()));
+    }
+
     public static function count(): int
     {
         return count(static::cases());
