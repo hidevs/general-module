@@ -3,6 +3,7 @@
 namespace Modules\General\Contracts\Enum;
 
 use Illuminate\Validation\ValidationException;
+use RuntimeException;
 
 trait EnumMethods
 {
@@ -47,5 +48,74 @@ trait EnumMethods
     public static function parse(mixed $value): static
     {
         return ($value instanceof static) ? $value : static::from($value);
+    }
+
+    public function order(): int
+    {
+        return array_search($this, static::cases(), true);
+    }
+
+    /**
+     * @return static[]
+     */
+    public static function ordered(): array
+    {
+        $cases = static::cases();
+        usort($cases, fn (self $a, self $b) => $a->order() <=> $b->order());
+
+        return $cases;
+    }
+
+    /**
+     * @return static[]
+     */
+    public static function greaterThan(self $enum): array
+    {
+        return array_values(array_filter(
+            static::ordered(),
+            fn (self $case) => $case->order() < $enum->order(),
+        ));
+    }
+
+    /**
+     * @return static[]
+     */
+    public static function lessThan(self $enum): array
+    {
+        return array_values(array_filter(
+            static::ordered(),
+            fn (self $case) => $case->order() > $enum->order(),
+        ));
+    }
+
+    /**
+     * @return array<string, string>
+     */
+    public static function optionsGreaterThan(self $enum): array
+    {
+        $result = [];
+        foreach (static::greaterThan($enum) as $case) {
+            $result[$case->value] = $case->label();
+        }
+
+        return $result;
+    }
+
+    /**
+     * @return array<string, string>
+     */
+    public static function optionsLessThan(self $enum): array
+    {
+        $result = [];
+        foreach (static::lessThan($enum) as $case) {
+            $result[$case->value] = $case->label();
+        }
+
+        return $result;
+    }
+
+    public static function default(): static
+    {
+        throw new RuntimeException(static::class.'::default() is not implemented.');
     }
 }
