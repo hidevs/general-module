@@ -2,12 +2,13 @@
 
 namespace Modules\General\Providers;
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Blade;
-use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Horizon\Horizon;
 use Modules\General\Console\Command\InstallCommand;
 use Nwidart\Modules\Traits\PathNamespace;
+use Opcodes\LogViewer\Facades\LogViewer;
 use RecursiveDirectoryIterator;
 use RecursiveIteratorIterator;
 
@@ -31,7 +32,7 @@ class GeneralServiceProvider extends ServiceProvider
         $this->registerViews();
         $this->loadMigrationsFrom(module_path($this->name, 'database/migrations'));
 
-        $this->registerHorizonGate();
+        $this->registerMonitoringGates();
     }
 
     /**
@@ -43,15 +44,10 @@ class GeneralServiceProvider extends ServiceProvider
         $this->app->register(RouteServiceProvider::class);
     }
 
-    public function registerHorizonGate()
+    public function registerMonitoringGates(): void
     {
-        Gate::check('viewHorizon', function ($user) {
-            return $user->can('viewHorizon');
-        });
-
-        Horizon::auth(function ($request) {
-            return Gate::check('viewHorizon', [$request->user()]) || config('app.debug', false);
-        });
+        LogViewer::auth(fn ($request): bool => config('app.debug', false));
+        Horizon::auth(fn ($request): bool => config('app.debug', false));
     }
 
     /**
