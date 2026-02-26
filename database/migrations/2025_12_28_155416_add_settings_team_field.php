@@ -26,4 +26,21 @@ return new class extends Migration
             ], 'settings_key_team_id_unique');
         });
     }
+
+    public function down(): void
+    {
+        $settingsTable = config('settings.table');
+        $teamForeignKey = config('settings.team_foreign_key');
+
+        if (! Schema::hasTable($settingsTable) || ! Schema::hasColumn($settingsTable, $teamForeignKey)) {
+            return;
+        }
+
+        Schema::table($settingsTable, function (Blueprint $table) use ($teamForeignKey) {
+            $table->dropUnique('settings_key_team_id_unique');
+            $table->dropIndex('settings_team_id_index');
+            $table->dropColumn($teamForeignKey);
+            $table->unique('key', 'settings_key_unique');
+        });
+    }
 };
