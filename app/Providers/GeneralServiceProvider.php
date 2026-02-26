@@ -2,7 +2,6 @@
 
 namespace Modules\General\Providers;
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Horizon\Horizon;
