@@ -50,42 +50,42 @@ trait PaginationAndSortableAndSearchableValidator
 
     public static function filtersKey(): string
     {
-        return config('repository.filter.filters_key', 'filters');
+        return 'filters';
     }
 
     public static function pageKey(): string
     {
-        return config('repository.pagination.page_key', 'page');
+        return 'page';
     }
 
     public static function perPageKey(): string
     {
-        return config('repository.pagination.per_page_key', 'perPage');
+        return 'perPage';
     }
 
     public static function orderByKey(): string
     {
-        return config('repository.criteria.params.orderBy', 'orderBy');
+        return 'orderBy';
     }
 
     public static function sortedByKey(): string
     {
-        return config('repository.criteria.params.sortedBy', 'sortedBy');
+        return 'sortedBy';
     }
 
     public static function searchKey(): string
     {
-        return config('repository.criteria.params.search', 'search');
+        return 'search';
     }
 
     public static function searchFieldsKey(): string
     {
-        return config('repository.criteria.params.searchFields', 'searchFields');
+        return 'searchFields';
     }
 
     public static function searchJoinKey(): string
     {
-        return config('repository.criteria.params.searchJoin', 'searchJoin');
+        return 'searchJoin';
     }
 
     public function maxPerPage(): int
@@ -126,12 +126,12 @@ trait PaginationAndSortableAndSearchableValidator
 
     public function getDefaultOrderColumn(): string
     {
-        return config('repository.pagination.default.order_by_column', 'id');
+        return 'id';
     }
 
     public function getOrderColumns(): array
     {
-        return config('repository.pagination.default.order_by_columns', ['id', 'created_at']);
+        return ['id', 'created_at'];
     }
 
     public function addRules(): array
